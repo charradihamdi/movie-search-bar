@@ -1,5 +1,4 @@
-import { useHistory } from 'react-router-dom';
-
+import { useHistory } from "react-router-dom";
 const SearchBar = ({ searchQuery, setSearchQuery }) => {
     const history = useHistory();
     const onSubmit = (e) => {
@@ -15,9 +14,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => {
             onSubmit={onSubmit}
         >
             <label htmlFor="header-search">
-                <span className="visually-hidden">
-                    Search blog posts
-                </span>
+             
             </label>
             <input
                 value={searchQuery}

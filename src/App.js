@@ -1,51 +1,46 @@
-import { useState } from 'react';
+import { useState,createContext  } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import logo from './logo.svg';
+import Details from './Details';
 import './App.css';
 import Search from './search';
-import Announcer from './announcer';
+import { Container, Row, Col } from 'react-bootstrap'; 
+import movie from './utils.json/movies.json'
 
-const posts = [
-    { id: '1', name: 'This first post is about React' },
-    { id: '2', name: 'This next post is about Preact' },
-    { id: '3', name: 'We have yet another React post!' },
-    { id: '4', name: 'This is the fourth and final post' },
-];
 
-const filterPosts = (posts, query) => {
+const  filterMovie = (mov, query) => {
     if (!query) {
-        return posts;
+        return mov;
     }
 
-    return posts.filter((post) => {
-        const postName = post.name.toLowerCase();
+    return mov.filter((mov) => {
+        
+        const postName = mov.title.toLowerCase();
         return postName.includes(query);
     });
 };
 
 const App = () => {
+   
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
     const [searchQuery, setSearchQuery] = useState(query || '');
-    const filteredPosts = filterPosts(posts, searchQuery);
-
+    const filteredPosts = filterMovie(movie.movies, searchQuery);
+    const [idFilm,setIdFilm]=useState()
+    
     return (
         <Router>
-            <div className="App">
-                <Announcer
-                    message={`${filteredPosts.length} posts`}
-                />
-                <img src={logo} className="App-logo" alt="logo" />
-                <Search
-                    searchQuery={searchQuery}
-                    setSearchQuery={setSearchQuery}
-                />
+              <Container fluid>
+              <Row>
+              <Col md={10} className="sidebar">
+                <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
                 <ul>
-                    {filteredPosts.map((post) => (
-                        <li key={post.id}>{post.name}</li>
-                    ))}
+                    {filteredPosts.map((post) => (<li onClick={(e)=>{setIdFilm(e.target.value)}} value={post.id} key={post.id}>{post.title}</li> ))}
                 </ul>
-            </div>
+            </Col>
+            <Col md={8} style={{ marginLeft: '18rem', paddingTop: '60px' }}> <Details id={idFilm} /></Col>
+           
+            </Row>
+            </Container>
         </Router>
     );
 };

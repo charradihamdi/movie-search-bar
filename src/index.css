@@ -6,11 +6,60 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    margin: 40px;
-    background-color: #282c34;
+    margin: 5px;
+    background-color: #c6c8cc;
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas,
         'Courier New', monospace;
+}
+
+h1, h2, h3, h4, h5, h6{
+    color: var(--title);
+    text-transform: capitalize;
+    font-family: var(--title-font);
+  }
+  
+  section,
+  aside,
+  article,
+  div,
+  img{
+    box-sizing: border-box;
+  }
+  section img{
+    width: 100%;
+  }
+  section{
+    width: var(--width);
+    background: #fff;
+    padding: 20px;
+  }
+  section h3{
+    font-size: calc(var(--width)/10);
+  }
+  section p{
+    font-family: var(--text-font);
+    color: var(--para-text);
+    font-size: calc(var(--width)/20);
+  }
+  .date{
+    font-size: calc(var(--width)/25);
+  }
+  h1{
+    color: #fff;
+  }
+  
+  section a{
+    text-decoration: none;
+    color: var(--bg);
+    font-family: var(--title-font);
+    font-weight: 700;
+    font-size: calc(var(--width)/23);
+  }
+img{
+
+ width: 100px;
+  
 }
